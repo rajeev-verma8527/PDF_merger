@@ -111,6 +111,10 @@ button:active {
     margin: 10px 0;
 }*/ 
 
+.hidden{
+    display: none;
+}
+
 #progress-bar-fill {
     height: 20px;
     background-color: #007bff;
