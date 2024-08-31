@@ -1,0 +1,21 @@
+{
+  "name": "pdf_merger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/backend/index.js",
+  "scripts": {
+    "start": "node ./src/backend/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajeev-verma8527/PDF_merger.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajeev-verma8527/PDF_merger/issues"
+  },
+  "homepage": "https://github.com/rajeev-verma8527/PDF_merger#readme"
+}
