@@ -23,22 +23,20 @@
 
         <section id="progress-section" class="hidden">
             <h2><i class="fas fa-spinner fa-spin"></i> Processing</h2>
-            <div id="progress-bar">
-                <div id="progress-bar-fill"></div>
-            </div>
             <p id="progress-text">Please wait while we process your files...</p>
             
         </section>
 
         <section id="result-section" class="hidden">
             <h2><i class="fas fa-file-download"></i> Your Merged PDF</h2>
-            <a id="download-link" href="#" download="merged.pdf"><i class="fas fa-download"></i> Download Merged PDF</a>
+            <a id="download-link" href="#"><i class="fas fa-download"></i> Download Merged PDF</a>
             
+            <button id="resetbtn" onclick="window.location.reload()">Reset</button>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 PDF Merger </p>
+        <p>PDF Merger </p>
     </footer>
 
     <script src="script.js"></script>

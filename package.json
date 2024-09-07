@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/backend/index.js",
   "scripts": {
-    "start": "node ./src/backend/index.js",
+    "start": "node ./src/backend/index.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,10 +12,9 @@
     "url": "git+https://github.com/rajeev-verma8527/PDF_merger.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/rajeev-verma8527/PDF_merger/issues"
-  },
-  "homepage": "https://github.com/rajeev-verma8527/PDF_merger#readme"
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "pdf-merger-js": "^5.1.2"
+  }
 }

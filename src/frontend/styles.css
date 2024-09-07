@@ -115,6 +115,18 @@ button:active {
     display: none;
 }
 
+#resetbtn{
+    display: block;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#download-link{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #progress-bar-fill {
     height: 20px;
     background-color: #007bff;

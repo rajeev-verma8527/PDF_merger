@@ -9,28 +9,51 @@ document.getElementById('merge-button').addEventListener('click', function() {
     document.getElementById('upload-section').classList.add('hidden');
     document.getElementById('progress-section').classList.remove('hidden');
 
-    // Simulate file merging process
-    simulateFileMerge(files).then(mergedPdfUrl => {
+    mergeFiles(files).then(obj => {
         document.getElementById('progress-section').classList.add('hidden');
         document.getElementById('result-section').classList.remove('hidden');
-        document.getElementById('download-link').href = mergedPdfUrl;
+
+        console.log(obj)
+        const url = URL.createObjectURL(obj.blob);
+        const downlaodbtn = document.getElementById("download-link")
+        downlaodbtn.setAttribute("href",url)
+        downlaodbtn.setAttribute("download",obj.name)
+
+
+
+        // console.log(blob);
     });
 });
 
 
-// TO-DO : rewrite
-
-function simulateFileMerge(files) {
+function mergeFiles(files){
     return new Promise((resolve) => {
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += 10;
-            document.getElementById('progress-bar-fill').style.width = `${progress}%`;
 
-            if (progress >= 100) {
-                clearInterval(interval);
-                resolve('path/to/merged.pdf'); // Replace with actual file URL
+        const formData = new FormData()
+        
+        for(let i = 0; i< files.length; i++){
+            formData.append('files',files[i])
+        }
+
+        request = new Request("/merge",{
+            method: 'POST',
+            body: formData
+        })
+
+        fetch(request).then((res) =>{
+            if(!res.ok){
+                alert("Some error occured!")
             }
-        }, 500);
-    });
+            else{
+
+                const name = res.headers.get("Content-Disposition").split("filename=")[1].replaceAll('"','')
+                res.blob().then(blob =>{
+                    resolve({
+                        name:name,
+                        blob:blob
+                    })
+                })
+            }
+        })
+    })
 }
