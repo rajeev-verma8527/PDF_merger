@@ -67,10 +67,10 @@ function mergeFiles(files){
 const body = document.querySelector("body")
 const droparea = document.querySelector("#droparea")
 
-body.addEventListener("dragenter",()=>{
-    droparea.classList.remove("hidden")
+body.addEventListener("dragenter",(e)=>{
     e.preventDefault()
     e.stopPropagation()
+    droparea.classList.remove("hidden")
 })
 
 droparea.addEventListener("dragleave",()=>{
