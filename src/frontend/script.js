@@ -69,6 +69,8 @@ const droparea = document.querySelector("#droparea")
 
 body.addEventListener("dragenter",()=>{
     droparea.classList.remove("hidden")
+    e.preventDefault()
+    e.stopPropagation()
 })
 
 droparea.addEventListener("dragleave",()=>{
@@ -103,4 +105,11 @@ droparea.addEventListener("drop",(e) =>{
 
 
     e.stopPropagation()
+})
+
+
+//reset
+resetBtn = document.querySelector("#resetbtn")
+resetBtn.addEventListener("click" ,()=>{
+    window.location.reload()
 })
