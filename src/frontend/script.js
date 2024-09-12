@@ -5,6 +5,10 @@ document.getElementById('merge-button').addEventListener('click', function() {
         alert('Please select PDF files to merge.');
         return;
     }
+    else if(files.length === 1){
+        alert('You have added only 1 file')
+        return
+    }
 
     document.getElementById('upload-section').classList.add('hidden');
     document.getElementById('progress-section').classList.remove('hidden');
@@ -57,3 +61,46 @@ function mergeFiles(files){
         })
     })
 }
+
+
+// drag and drop
+const body = document.querySelector("body")
+const droparea = document.querySelector("#droparea")
+
+body.addEventListener("dragenter",()=>{
+    droparea.classList.remove("hidden")
+})
+
+droparea.addEventListener("dragleave",()=>{
+    droparea.classList.add("hidden")
+})
+droparea.addEventListener("dragover",(e)=>{
+    e.preventDefault()
+})
+
+droparea.addEventListener("drop",(e) =>{
+    e.preventDefault()
+    const files = e.dataTransfer.files
+    droparea.classList.add("hidden")
+
+    for( let file of files){
+        if(file.type !== "application/pdf"){
+            alert("One or more files are not pdfs")
+            return
+        }
+    }
+
+    input = document.querySelector("input#pdf-files")
+
+    // const dataTransfer = DataTransfer()
+    // dataTransfer.addElement()
+
+    document.querySelector("input#pdf-files").files = files
+    // console.log(input)
+    console.log(files.constructor)
+
+
+
+
+    e.stopPropagation()
+})
