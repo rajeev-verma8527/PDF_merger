@@ -1,22 +1,22 @@
+import express from "express";
+import path from "path";
+import { merger } from "./merger.mjs";
+import multer from "multer";
+import { fileURLToPath } from "url";
 
-import express from 'express'
-import path from 'path'
-import {merger} from "./merger.mjs"
-import multer from 'multer';
-import { fileURLToPath } from 'url';
+import helmet from "helmet";
 
-import helmet from 'helmet';
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 // console.log(__dirname)
 const upload = multer({ storage: multer.memoryStorage() });
 
-
 const app = express();
 
-// middleware
-app.use(helmet())
+// security middleware
+if (process.env.ENV !== "dev") {
+  app.use(helmet());
+}
 
 const port = process.env.PORT || 3000;
 
@@ -26,17 +26,17 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
-app.post("/merge", upload.array("files") , async (req,res) => {
-    const buffer = await merger(req.files)
+app.post("/merge", upload.array("files"), async (req, res) => {
+  const buffer = await merger(req.files);
 
-    res.setHeader('Content-Disposition', 'attachment; filename="merged.pdf"');
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Length', buffer.length);
+  res.setHeader("Content-Disposition", 'attachment; filename="merged.pdf"');
+  res.setHeader("Content-Type", "application/pdf");
+  res.setHeader("Content-Length", buffer.length);
 
-    res.send(buffer);
-
+  res.send(buffer);
 });
 
 app.listen(port, () => {
   console.log(`app listening on : http://localhost:${port}`);
+  console.log(`Environment: ${process.env.ENV}`)
 });
